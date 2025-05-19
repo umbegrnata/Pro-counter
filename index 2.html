@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contatore Seba</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #fdf6e3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+      text-align: center;
+    }
+    #counter {
+      font-size: 4em;
+      font-weight: bold;
+      color: #e74c3c;
+      margin: 0.2em 0;
+    }
+    .text {
+      font-size: 1.8em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="text">Sono passati</div>
+  <div id="counter">...</div>
+  <div class="text">giorni e Seba non è ancora un pro</div>
+
+  <script>
+    function updateCounter() {
+      const eventDate = new Date(2025, 4, 14); // 25 dicembre 2023
+      const today = new Date();
+
+      eventDate.setHours(0, 0, 0, 0);
+      today.setHours(0, 0, 0, 0);
+
+      const diffTime = today - eventDate;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+      document.getElementById("counter").textContent = diffDays;
+    }
+
+    updateCounter();
+
+    const now = new Date();
+    const msUntilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1) - now;
+    setTimeout(() => {
+      updateCounter();
+      setInterval(updateCounter, 86400000);
+    }, msUntilMidnight);
+  </script>
+
+</body>
+</html>
